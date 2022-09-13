@@ -2,9 +2,9 @@
 An Instagram clone made with [Next.js](https://github.com/vercel/next.js) and [Tailwindcss](https://github.com/tailwindlabs/tailwindcss)
 
 ## Why
-A few months ago the team behind Next.js announced the Layouts RFC and with that they opened a Pandora box in terms of possibilities.
+A few months ago the team behind Next.js announced the Layouts RFC and with that they opened a Pandora's box in terms of possibilities.
 
-One of the features proposed was intercepting router and as soon as I read its description I immediately thought of Instagram and how they do the same exact thing on their feed web page.
+One of the features proposed was intercepting routes and as soon as I read its description I immediately thought of Instagram and how they do the same exact thing on their feed web page.
 
 This got me thinking about a potential demo app that emulates Instagram's behaviour using Next.js' route intercepting capabilities.
 
