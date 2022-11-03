@@ -1,23 +1,23 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { type ProfileType } from '../../types'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { type ProfileType } from "../../types";
 
 type Data = {
-  profiles: ProfileType[]
-}
+	profiles: ProfileType[];
+};
 
 export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
-	const profiles:ProfileType[] = [
+	const profiles: ProfileType[] = [
 		{
 			id: "1",
 			username: "figma",
-			profilePicture: "#"
+			profilePicture: "#",
 		},
 		{
 			id: "2",
 			username: "milovangudelj",
-			profilePicture: "#"
-		}
+			profilePicture: "#",
+		},
 	];
 
-  res.status(200).json({ profiles })
-}
+	res.status(200).json({ profiles });
+};

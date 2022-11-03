@@ -6,4 +6,4 @@ export type PostType = {
 	description: string;
 	likes: string[];
 	comments: string[];
-}
+};

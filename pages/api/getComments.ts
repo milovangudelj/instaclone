@@ -1,16 +1,18 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { type CommentType } from '../../types'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { type CommentType } from "../../types";
 
 type Data = {
-  comments: CommentType[]
-}
+	comments: CommentType[];
+};
 
 export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
-	const comments:CommentType[] = [{
-		id: "1",
-		author: "2",
-		content: "So cool!"
-	}];
+	const comments: CommentType[] = [
+		{
+			id: "1",
+			author: "2",
+			content: "So cool!",
+		},
+	];
 
-  res.status(200).json({ comments })
-}
+	res.status(200).json({ comments });
+};
