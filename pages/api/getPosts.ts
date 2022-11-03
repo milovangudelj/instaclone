@@ -5,7 +5,7 @@ type Data = {
 	posts: PostType[];
 };
 
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	const posts: PostType[] = [
 		{
 			id: "Y0UMBGTFkZkHChwO",
@@ -20,3 +20,5 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 	res.status(200).json({ posts });
 };
+
+export default handler;

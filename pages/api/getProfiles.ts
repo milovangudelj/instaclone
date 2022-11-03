@@ -5,7 +5,7 @@ type Data = {
 	profiles: ProfileType[];
 };
 
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	const profiles: ProfileType[] = [
 		{
 			id: "1",
@@ -21,3 +21,5 @@ export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 	res.status(200).json({ profiles });
 };
+
+export default handler;
