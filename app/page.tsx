@@ -3,10 +3,9 @@ import { Post } from "../components";
 import { CANONICAL_URL } from "../utils/variables";
 
 export default async function Home() {
-	// const { posts }: { posts: PostType[] } = await (
-	// 	await fetch(`${CANONICAL_URL}/api/getPosts`)
-	// ).json();
-	const posts: PostType[] = [];
+	const { posts }: { posts: PostType[] } = await(
+		await fetch(`${CANONICAL_URL}/api/getPosts`)
+	).json();
 
 	return (
 		<div className="">
