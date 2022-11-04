@@ -10,7 +10,15 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ["Inter", ...defaultTheme.fontFamily.sans],
+				sans: [
+					"-apple-system",
+					"BlinkMacSystemFont",
+					"Segoe UI",
+					"Roboto",
+					"Helvetica",
+					"Arial",
+					"sans-serif",
+				],
 			},
 		},
 	},

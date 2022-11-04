@@ -1,15 +1,92 @@
+import Link from "next/link";
+
 import { Logo } from "../Logo";
+import {
+	Compass,
+	HeartStraight,
+	House,
+	MagnifyingGlass,
+	PaperPlaneTilt,
+	PlusCircle,
+	List,
+} from "../icons";
+import { ToolbarLink, ToolbarLinkType } from "../ToolbarLink";
+import Image from "next/image";
+
+const links: ToolbarLinkType[] = [
+	{
+		id: "li_01",
+		label: "Home",
+		href: "/",
+		icon: <House size={24} weight="fill" />,
+	},
+	{
+		id: "li_02",
+		label: "Search",
+		href: "/search",
+		icon: <MagnifyingGlass size={24} />,
+	},
+	{
+		id: "li_03",
+		label: "Explore",
+		href: "/explore",
+		icon: <Compass size={24} />,
+	},
+	{
+		id: "li_04",
+		label: "Messages",
+		href: "/messages",
+		icon: <PaperPlaneTilt size={24} />,
+	},
+	{
+		id: "li_05",
+		label: "Notifications",
+		href: "/notifications",
+		icon: <HeartStraight size={24} />,
+	},
+	{
+		id: "li_06",
+		label: "Create",
+		href: "/create",
+		icon: <PlusCircle size={24} />,
+	},
+	{
+		id: "li_07",
+		label: "Profile",
+		href: "/profile",
+		icon: (
+			<span className="relative inline-block h-6 w-6 rounded-full bg-white">
+				<Image
+					src={
+						"https://scontent.cdninstagram.com/v/t51.2885-19/182772699_954506405304022_4126284193549414847_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent.cdninstagram.com&_nc_cat=110&_nc_ohc=Xp9g39jXgxEAX9Lbbnr&edm=APs17CUBAAAA&ccb=7-5&oh=00_AfCRH0mvWZ4v9sL8vG3Rt-EWPVx0asd7SWolj5vNiT9Tiw&oe=63696416&_nc_sid=978cb9"
+					}
+					width={24}
+					height={24}
+					alt="Your ptofile picture"
+					className="absolute inset-0 rounded-full object-cover"
+				/>
+				<div className="absolute inset-0 rounded-full border border-black/10"></div>
+			</span>
+		),
+	},
+];
 
 export const Toolbar = () => {
 	return (
-		<div className="flex h-full w-[244px] flex-col border-r border-[rgb(219,_219,_219)] bg-white py-2 px-3">
-			<div className="mb-[19px] px-3 pt-[25px] pb-[16px]">
-				<div className="mt-[7px]">
+		<div className="sticky top-0 flex h-screen w-[245px] flex-col border-r border-[#dbdbdb] bg-white px-3 pt-2 pb-[20px]">
+			<div className="mb-[19px] px-3 pt-[25px] pb-[15px]">
+				<div className="mt-[7px] h-[26px]">
 					<Logo />
 				</div>
 			</div>
-			<div className="flex-1">items</div>
-			<div>more</div>
+			<ul className="flex flex-1 flex-col">
+				{links.map(({ id, ...linkData }) => (
+					<ToolbarLink key={id} {...linkData} />
+				))}
+			</ul>
+			<div>
+				<ToolbarLink href="/more" icon={<List size={24} />} label="More" />
+			</div>
 		</div>
 	);
 };

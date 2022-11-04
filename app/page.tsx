@@ -8,11 +8,9 @@ export default async function Home() {
 	).json();
 
 	return (
-		<div className="">
+		<div className="flex flex-col items-center pt-[26px]">
 			{posts &&
-				posts.map(({ id, ...postData }) => (
-					<Post key={id} data={postData} />
-				))}
+				posts.map(({ id, ...postData }) => <Post key={id} {...postData} />)}
 		</div>
 	);
 }

@@ -6,6 +6,9 @@ const nextConfig = {
 			{ loader: "@next/font/google", options: { subsets: ["latin"] } },
 		],
 	},
+	images: {
+		domains: ["scontent.cdninstagram.com", "instagram.fmxp5-1.fna.fbcdn.net"],
+	},
 };
 
 module.exports = nextConfig;
