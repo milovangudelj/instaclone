@@ -21,7 +21,7 @@ export default function RootLayout({
 			<body className="relative flex min-h-screen bg-[rgb(250,250,250)] text-black">
 				<Toolbar />
 				<div className="h-full flex-1">{children}</div>
-				<Stories />
+				{/* <Stories /> */}
 			</body>
 		</html>
 	);
