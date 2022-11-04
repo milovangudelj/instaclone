@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Story } from "../";
 
 import { StoryType } from "../../types";
