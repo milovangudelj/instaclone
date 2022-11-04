@@ -10,13 +10,13 @@ export const Stories = asyncComponent(async () => {
 	).json();
 
 	return (
-		<div className="sticky top-0 min-h-screen w-[300px]">
-			<div className="flex flex-col overflow-y-visible pt-8 pr-8">
+		<div className="scrollbar-none sticky top-0 h-screen w-[300px] overflow-y-scroll overscroll-contain">
+			<div className="flex flex-col pt-8 pr-8">
 				<span className="inline-block pb-[11px] text-base font-semibold text-[#383838]">
 					Stories
 				</span>
 				<div>
-					<ul className="flex flex-col space-y-[14px]">
+					<ul className="flex flex-col space-y-[14px] pb-[17px]">
 						{stories.map(({ id, ...storyData }, i) => (
 							<Story key={id} {...storyData} />
 						))}
