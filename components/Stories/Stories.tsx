@@ -20,14 +20,6 @@ export const Stories = asyncComponent(async () => {
 						{stories.map(({ id, ...storyData }, i) => (
 							<Story key={id} {...storyData} />
 						))}
-						{[...Array(20)].map((item, i) => (
-							<Story
-								key={i}
-								username="dummyuser"
-								name="Dummy"
-								seen={false}
-							/>
-						))}
 					</ul>
 				</div>
 			</div>

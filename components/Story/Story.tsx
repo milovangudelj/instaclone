@@ -28,10 +28,12 @@ export const Story = ({
 				</div>
 			</div>
 			<div className="flex flex-col pt-1 text-sm leading-[18px]">
-				<span className="font-semibold text-[#262626] [font-variant-numeric:lining-nums]">
+				<span className="max-w-[22ch] overflow-hidden text-ellipsis font-semibold text-[#262626] [font-variant-numeric:lining-nums]">
 					{username}
 				</span>
-				<span className="text-[#8e8e8e]">{name}</span>
+				<span className="max-w-[22ch] overflow-hidden text-ellipsis text-[#8e8e8e]">
+					{name}
+				</span>
 			</div>
 		</li>
 	);
