@@ -6,3 +6,8 @@ export { default as PaperPlaneTilt } from "./PaperPlaneTilt";
 export { default as HeartStraight } from "./HeartStraight";
 export { default as PlusCircle } from "./PlusCircle";
 export { default as List } from "./List";
+export { default as BookmarkSimple } from "./BookmarkSimple";
+export { default as ChatCircle } from "./ChatCircle";
+export { default as DotsThreeVertical } from "./DotsThreeVertical";
+export { default as DotsThree } from "./DotsThree";
+export { default as Smiley } from "./Smiley";

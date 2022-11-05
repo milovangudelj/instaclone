@@ -3,7 +3,7 @@ export type PostType = {
 	author: string;
 	pictures: string[];
 	likes: string[];
-	comments: string[];
+	commentIds: string[];
 	commentCount: number;
 	description: string;
 	subtitle?: string;

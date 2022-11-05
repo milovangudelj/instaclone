@@ -12,7 +12,7 @@ export const Stories = asyncComponent(async () => {
 	return (
 		<div className="scrollbar-none sticky top-0 h-screen w-[300px] overflow-y-scroll overscroll-contain">
 			<div className="flex flex-col pt-8 pr-8">
-				<span className="inline-block pb-[11px] text-base font-semibold text-[#383838]">
+				<span className="inline-block pb-[11px] text-base font-semibold text-dark-he">
 					Stories
 				</span>
 				<div>

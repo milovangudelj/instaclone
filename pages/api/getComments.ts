@@ -1,20 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { type CommentType } from "../../types";
+import comments from "../../data/comments.json";
 
 type Data = {
 	comments: CommentType[];
 };
 
 const handler = (req: NextApiRequest, res: NextApiResponse<Data>) => {
-	const comments: CommentType[] = [
-		{
-			id: "1",
-			author: "2",
-			content: "So cool!",
-		},
-	];
+	const { postId } = req.query;
 
-	res.status(200).json({ comments });
+	const data = comments.filter((comment) => comment.onPost === postId);
+
+	res.status(200).json({ comments: data });
 };
 
 export default handler;
