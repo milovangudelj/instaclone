@@ -1,3 +1,5 @@
+export * from "./ig";
+
 export { default as ArrowCircleRight } from "./ArrowCircleRight";
 export { default as House } from "./House";
 export { default as MagnifyingGlass } from "./MagnifyingGlass";

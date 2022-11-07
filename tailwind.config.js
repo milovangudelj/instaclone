@@ -25,6 +25,10 @@ module.exports = {
 					me: "#8e8e8e",
 					le: "#c7c7c7",
 				},
+				button: {
+					secondary: "rgb(38,38,38)",
+				},
+				stroke: "#dbdbdb",
 			},
 			fontFamily: {
 				sans: [

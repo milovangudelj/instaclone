@@ -1,24 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-	ArrowCircleRight,
-	BookmarkSimple,
-	ChatCircle,
-	DotsThree,
-	HeartStraight,
-	PaperPlaneTilt,
-	Smiley,
+	IGArrowCircleRight,
+	IGBookmarkSimple,
+	IGChatCircle,
+	IGDotsThree,
+	IGHeartStraight,
+	IGPaperPlaneTilt,
+	IGSmiley,
 } from "../../components/icons";
+import { getUser } from "../../pages/api/getUser";
 
 import { CommentType, UserType, type PostType } from "../../types";
 import asyncComponent from "../../utils/asyncComponent";
 import { CANONICAL_URL } from "../../utils/variables";
-
-const getUser = async (id: string) => {
-	const res = await fetch(`${CANONICAL_URL}/api/getUser?id=${id}`);
-
-	return res.json();
-};
 
 const getComments = async (postId: string) => {
 	const res = await fetch(`${CANONICAL_URL}/api/getComments?postId=${postId}`);
@@ -38,16 +33,16 @@ export const Post = asyncComponent(
 		when,
 		subtitle,
 	}: PostType) => {
-		const { profilePicture, username, story }: UserType = await getUser(
-			author
-		);
+		const { profilePicture, username, story }: UserType = await getUser({
+			id: author,
+		});
 		const { comments }: { comments: CommentType[] } = await getComments(
 			postId
 		);
 
 		return (
-			<article className="mb-3 w-[472px] rounded-lg border border-[#dbdbdb] bg-white">
-				<div className="flex items-center border-b border-[#dbdbdb]">
+			<article className="mb-3 w-[472px] rounded-lg border border-stroke bg-white">
+				<div className="flex items-center border-b border-stroke">
 					<header className="flex flex-1 items-center py-2 pr-1 pl-3">
 						<div
 							className={`relative my-1 h-8 w-8 rounded-full ${
@@ -60,65 +55,66 @@ export const Post = asyncComponent(
 								height={32}
 								quality={100}
 								alt={`${username}'s profile picture`}
-								className="absolute inset-0 rounded-full object-cover"
+								className="pointer-events-none absolute inset-0 rounded-full object-cover"
 							/>
 							<div className="absolute inset-0 rounded-full border border-black/10"></div>
 						</div>
 						<div className="min-h-10 ml-2.5 flex flex-col text-dark-he">
-							<span className="relative top-px p-0.5 text-sm font-semibold leading-[18px]">
+							<Link
+								href={`/${username}`}
+								className="relative top-px p-0.5 text-sm font-semibold leading-[18px]"
+							>
 								{username}
-							</span>
+							</Link>
 							<span className="relative bottom-px inline-block p-0.5 text-xs">
 								{subtitle}
 							</span>
 						</div>
 					</header>
 					<div className="mr-1 cursor-pointer p-2">
-						<DotsThree size={24} />
+						<IGDotsThree size={24} />
 					</div>
 				</div>
-				<div className="relative aspect-[4/5] w-full bg-gray-300">
+				<div className="relative aspect-[470/587.5] w-[470px] bg-gray-300">
 					<ul className="scrollbar-none flex h-full w-full snap-x snap-mandatory overflow-x-scroll">
 						{pictures.map((picture, i) => (
 							<li
 								key={`pic_0${i}`}
-								className="relative aspect-[4/5] w-[470px] snap-center"
+								className="relative aspect-[470/587.5] w-[470px] snap-center"
 							>
 								<Image
 									src={picture}
 									width={470}
-									height={(470 / 4) * 5}
+									height={587.5}
 									alt={``}
-									className="absolute inset-0 object-cover"
+									className="pointer-events-none absolute inset-0 aspect-[470/587.5] w-[470px] object-cover"
 									quality={100}
 								/>
 							</li>
 						))}
 					</ul>
-					<span className="absolute top-[calc(50%-16px)] right-0 mr-2">
-						<ArrowCircleRight
-							size={30}
-							weight="fill"
-							className="text-white/80"
-						/>
-					</span>
+					{pictures.length > 1 && (
+						<span className="absolute top-1/2 right-0 -translate-y-1/2 px-[11px] py-[19px]">
+							<IGArrowCircleRight size={24} weight="fill" />
+						</span>
+					)}
 				</div>
-				<div className="border-b border-[#dbdbdb] p-1">
+				<div className="border-b border-stroke p-1">
 					<div className="flex items-center justify-between">
 						<div className="flex items-center space-x-4 p-2 pb-3.5">
 							<span>
-								<HeartStraight size={24} />
+								<IGHeartStraight size={24} />
 							</span>
 							<span>
-								<ChatCircle size={24} />
+								<IGChatCircle size={24} />
 							</span>
 							<span>
-								<PaperPlaneTilt size={24} />
+								<IGPaperPlaneTilt size={24} />
 							</span>
 						</div>
-						<div className="flex items-center p-2">
+						<div className="flex items-center p-2 pb-3.5">
 							<span className="">
-								<BookmarkSimple size={24} />
+								<IGBookmarkSimple size={24} />
 							</span>
 						</div>
 					</div>
@@ -136,7 +132,7 @@ export const Post = asyncComponent(
 				<div className="px-3 py-[11px]">
 					<div className="flex items-center space-x-3 text-sm leading-[18px]">
 						<span className="inline-block">
-							<Smiley size={24} />
+							<IGSmiley size={24} />
 						</span>
 						<span className="inline-block flex-1 text-dark-me">
 							Add a comment...
@@ -240,7 +236,7 @@ const PostComments = ({
 									)}
 								</p>
 								<span>
-									<HeartStraight size={12} />
+									<IGHeartStraight size={12} />
 								</span>
 							</li>
 						))}

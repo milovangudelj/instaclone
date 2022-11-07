@@ -2,9 +2,8 @@ export const Logo = () => {
 	return (
 		<svg
 			aria-label="Instagram"
-			className="block relative"
-			color="#262626"
-			fill="#262626"
+			className="relative block"
+			fill="currentColor"
 			height="29"
 			role="img"
 			viewBox="32 4 113 32"

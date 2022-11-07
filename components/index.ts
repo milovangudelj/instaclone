@@ -1,3 +1,4 @@
+export * from "./TitleUpdater";
 export * from "./Logo";
 export * from "./Toolbar";
 export * from "./ToolbarLink";

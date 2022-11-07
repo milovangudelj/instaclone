@@ -9,4 +9,8 @@
 	.scrollbar-auto::-webkit-scrollbar {
 		display: initial;
 	}
+
+	.border-debug {
+		@apply border-2 border-dashed border-lime-500;
+	}
 }
