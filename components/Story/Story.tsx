@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { StoryType } from "../../types";
+import { ProfileImage } from "../ProfileImage";
 
 export const Story = ({
 	username,
@@ -11,22 +12,14 @@ export const Story = ({
 	return (
 		<li className="flex items-center">
 			<div className="mr-2.5 p-1.5">
-				<div
-					className={`relative h-[65px] w-[65px] rounded-full bg-white ${
-						seen ? "ring-1 ring-black/10" : "ring-2 ring-rose-500"
-					} ring-offset-[3px]`}
-				>
-					{image && (
-						<Image
-							src={image}
-							width={65}
-							height={65}
-							alt={`${username}'s profile picture`}
-							className="absolute inset-0 rounded-full object-cover"
-						/>
-					)}
-					<div className="absolute inset-0 rounded-full border border-black/10"></div>
-				</div>
+				<ProfileImage
+					src={image}
+					alt={`${username}'s profile picture`}
+					size={65}
+					story={!seen}
+					className="ig-ring-on-offwhite w-[65px]"
+					ringSize="md"
+				/>
 			</div>
 			<div className="flex flex-col pt-1 text-sm leading-[18px]">
 				<Link

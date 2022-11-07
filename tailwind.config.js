@@ -29,6 +29,12 @@ module.exports = {
 					secondary: "rgb(38,38,38)",
 				},
 				stroke: "#dbdbdb",
+				gradient: {
+					start: "#FFCB00",
+					middle: "#FF2C44",
+					end: "#D300C5",
+				},
+				offwhite: "#fafafa",
 			},
 			fontFamily: {
 				sans: [
