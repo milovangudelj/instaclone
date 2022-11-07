@@ -28,10 +28,6 @@ export const getUser = async ({
 		(id ? `?id=${id}` : `?username=${username}`);
 	const res = await fetch(apiUrl);
 
-	// For test loading state
-	setTimeout(() => {
-		console.log("User loaded!");
-	}, 2000);
 	return res.json();
 };
 
