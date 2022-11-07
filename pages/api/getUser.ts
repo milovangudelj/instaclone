@@ -11,9 +11,13 @@ const handler = (
 ) => {
 	const { id, username } = req.query;
 
+	console.log(`Asked for user {id: ${id}, username: ${username}}`);
+
 	const user = users.find(
 		(entry) => entry.id === id || entry.username === username
 	);
+
+	console.log({ user });
 
 	res.status(200).json(user ?? { error: "User not found." });
 };
