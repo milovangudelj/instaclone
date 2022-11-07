@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { ProfileImage, TitleUpdater } from "../../components";
+import { ProfileImage, TitleUpdater } from "../../../components";
 import {
 	IGDotsThree,
 	IGDownChevron,
 	IGFollowing,
 	IGHeartStraight,
-} from "../../components/icons";
-import { getUser } from "../../utils/getUserQuery";
-import { UserType } from "../../types";
-import { abbreviateNumber } from "../../utils/abbreviateNum";
-import { colorizeText } from "../../utils/colorizeText";
-import { CANONICAL_URL } from "../../utils/variables";
+} from "../../../components/icons";
+import { getUser } from "../../../utils/getUserQuery";
+import { UserType } from "../../../types";
+import { abbreviateNumber } from "../../../utils/abbreviateNum";
+import { colorizeText } from "../../../utils/colorizeText";
+import { CANONICAL_URL } from "../../../utils/variables";
 
 const getUsernames = async () => {
 	const { users }: { users: UserType[] } = await (

@@ -1,5 +1,5 @@
-import { getUser } from "../../utils/getUserQuery";
-import { UserType } from "../../types";
+import { getUser } from "../../../utils/getUserQuery";
+import { UserType } from "../../../types";
 
 const UserHead = async ({ params }: { params: { [key: string]: string } }) => {
 	const { user: userId } = params;
