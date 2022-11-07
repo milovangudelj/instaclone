@@ -15,6 +15,8 @@ const handler = (
 		(entry) => entry.id === id || entry.username === username
 	);
 
+	console.log(user);
+
 	res.status(200).json(user ?? { error: "User not found." });
 };
 
