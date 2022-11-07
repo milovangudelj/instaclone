@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ReactNode } from "react";
-import { TitleUpdater } from "../../components";
+import { ProfileImage, TitleUpdater } from "../../components";
 import {
 	IGDotsThree,
 	IGDownChevron,
@@ -9,6 +10,8 @@ import {
 } from "../../components/icons";
 import { getUser } from "../../pages/api/getUser";
 import { UserType } from "../../types";
+import { abbreviateNumber } from "../../utils/abbreviateNum";
+import { colorizeText } from "../../utils/colorizeText";
 import { CANONICAL_URL } from "../../utils/variables";
 
 const getUsernames = async () => {
@@ -31,10 +34,21 @@ type UserPageProps = { params: { [key: string]: string } };
 
 const UserPage = async ({ params }: UserPageProps) => {
 	const { user } = params;
-	const { profilePicture, username, name, story, verified }: UserType =
-		await getUser({
-			username: user,
-		});
+	const {
+		profilePicture,
+		username,
+		name,
+		story,
+		verified,
+		followerCount,
+		followers,
+		followCount,
+		postCount,
+		description,
+		link,
+	}: UserType = await getUser({
+		username: user,
+	});
 
 	const title = `${name} (@${username}) • Instagram photos and videos`;
 
@@ -44,25 +58,16 @@ const UserPage = async ({ params }: UserPageProps) => {
 			<main className="px-[20px] pt-[30px]">
 				<div className="mx-auto flex max-w-[935px]">
 					<div className="mr-[30px] flex flex-[1_0_0px] items-center justify-center">
-						<div
-							className={`relative aspect-square w-[150px] rounded-full ${
-								story
-									? "ring-[3px] ring-rose-500 ring-offset-[5px]"
-									: "ring-[2px] ring-black/10 ring-offset-[5px]"
-							}`}
-						>
-							<Image
-								src={profilePicture}
-								alt={`${username}'s profile picture`}
-								width={150}
-								height={150}
-								quality={100}
-								className="rounded-full"
-							/>
-							<div className="absolute inset-0 rounded-full border border-black/10"></div>
-						</div>
+						<ProfileImage
+							src={profilePicture}
+							alt={`${username}'s profile picture`}
+							size={150}
+							story={story}
+							className="ig-ring-on-offwhite"
+							ringSize="lg"
+						/>
 					</div>
-					<div className="h-[185px] flex-[2_1_30px]">
+					<div className="flex-[2_1_30px]">
 						<div className="flex items-center">
 							<div className="flex items-center">
 								<span className="max-w-[21ch] overflow-hidden text-ellipsis text-[28px] font-light leading-[32px]">
@@ -96,6 +101,53 @@ const UserPage = async ({ params }: UserPageProps) => {
 								</div>
 							</div>
 						</div>
+						<BaseStats
+							followers={followerCount}
+							follows={followCount}
+							posts={postCount}
+						/>
+						<div>
+							<div className="font-semibold">{name}</div>
+							<p>{colorizeText(description)}</p>
+						</div>
+						<div>
+							<Link
+								href={link}
+								className="font-semibold text-link hover:underline"
+							>
+								{link.replace(/(https?:\/\/)/g, "")}
+							</Link>
+						</div>
+						<div className="mt-[12px] text-[12px] font-medium leading-[16px] text-dark-me">
+							Followed by{" "}
+							{followers.slice(0, 3).map((follower, i) => {
+								if (i === followers.length - 1)
+									return (
+										<>
+											{" "}
+											and{" "}
+											<span className="text-dark-he">
+												{follower}
+											</span>
+										</>
+									);
+								if (i === 2 && followers.length > 3)
+									return (
+										<>
+											<span className="text-dark-he">
+												{follower}
+											</span>{" "}
+											+ {followers.length - 3} more
+										</>
+									);
+								return (
+									<>
+										{i !== 0 && ", "}
+										<span className="text-dark-he">{follower}</span>
+									</>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 				<div>
@@ -122,5 +174,32 @@ const Button = ({ children }: { children: ReactNode }) => {
 		<span className="block h-min cursor-pointer rounded border border-stroke py-[5px] px-[9px] text-center text-sm font-semibold leading-[18px] text-button-secondary">
 			{children}
 		</span>
+	);
+};
+
+const BaseStats = ({
+	followers,
+	follows,
+	posts,
+}: {
+	followers: number;
+	follows: number;
+	posts: number;
+}) => {
+	return (
+		<div className="my-5 flex space-x-10">
+			<div>
+				<span className="font-semibold">{abbreviateNumber(posts)}</span>{" "}
+				posts
+			</div>
+			<div>
+				<span className="font-semibold">{abbreviateNumber(followers)}</span>{" "}
+				followers
+			</div>
+			<div>
+				<span className="font-semibold">{abbreviateNumber(follows)}</span>{" "}
+				following
+			</div>
+		</div>
 	);
 };

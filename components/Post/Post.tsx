@@ -13,7 +13,9 @@ import { getUser } from "../../pages/api/getUser";
 
 import { CommentType, UserType, type PostType } from "../../types";
 import asyncComponent from "../../utils/asyncComponent";
+import { colorizeText } from "../../utils/colorizeText";
 import { CANONICAL_URL } from "../../utils/variables";
+import { ProfileImage } from "../ProfileImage";
 
 const getComments = async (postId: string) => {
 	const res = await fetch(`${CANONICAL_URL}/api/getComments?postId=${postId}`);
@@ -44,21 +46,14 @@ export const Post = asyncComponent(
 			<article className="mb-3 w-[472px] rounded-lg border border-stroke bg-white">
 				<div className="flex items-center border-b border-stroke">
 					<header className="flex flex-1 items-center py-2 pr-1 pl-3">
-						<div
-							className={`relative my-1 h-8 w-8 rounded-full ${
-								story ? "ring-2 ring-rose-500" : ""
-							} ring-offset-2`}
-						>
-							<Image
-								src={profilePicture}
-								width={32}
-								height={32}
-								quality={100}
-								alt={`${username}'s profile picture`}
-								className="pointer-events-none absolute inset-0 rounded-full object-cover"
-							/>
-							<div className="absolute inset-0 rounded-full border border-black/10"></div>
-						</div>
+						<ProfileImage
+							src={profilePicture}
+							alt={`${username}'s profile picture`}
+							size={32}
+							story={story}
+							className="my-1 w-[32px]"
+							ringSize="sm"
+						/>
 						<div className="min-h-10 ml-2.5 flex flex-col text-dark-he">
 							<Link
 								href={`/${username}`}
@@ -189,15 +184,7 @@ const PostDescription = ({
 		<div className="mb-2 px-2 text-sm leading-[18px] text-dark-he">
 			<p>
 				<span className="font-semibold">{username}</span>{" "}
-				{desc.split(/(#[a-z0-9_]+)/g).map((segment, i) =>
-					segment.startsWith("#") ? (
-						<span key={`at_0${i}`} className="text-link">
-							{segment}
-						</span>
-					) : (
-						segment
-					)
-				)}
+				{colorizeText(desc)}
 				{truncated && <span className="text-dark-me"> more</span>}
 			</p>
 		</div>
@@ -225,15 +212,7 @@ const PostComments = ({
 							<li key={id} className="flex items-center">
 								<p className="flex-1 text-sm leading-[18px]">
 									<span className="font-semibold">{author}</span>{" "}
-									{content.split(/(@[a-z0-9_]+)/g).map((segment, i) =>
-										segment.startsWith("@") ? (
-											<span key={`at_0${i}`} className="text-link">
-												{segment}
-											</span>
-										) : (
-											segment
-										)
-									)}
+									{colorizeText(content)}
 								</p>
 								<span>
 									<IGHeartStraight size={12} />
