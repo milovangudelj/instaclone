@@ -112,10 +112,10 @@ const UserPage = async ({ params }: UserPageProps) => {
 						</div>
 						<div>
 							<Link
-								href={link}
+								href={link ?? ""}
 								className="font-semibold text-link hover:underline"
 							>
-								{link ? link.replace(/(https?:\/\/)/g, "") : link}
+								{link ? link.replace(/(https?:\/\/)/g, "") : ""}
 							</Link>
 						</div>
 						<div className="mt-[12px] text-[12px] font-medium leading-[16px] text-dark-me">
