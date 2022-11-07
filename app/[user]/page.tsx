@@ -37,23 +37,8 @@ const UserPage = async ({ params }: UserPageProps) => {
 	const { user, error } = await getUser({
 		username: userId,
 	});
-	if (!user) return <p>Failed to fetch user data...</p>;
 
-	const {
-		profilePicture,
-		username,
-		name,
-		story,
-		verified,
-		followerCount,
-		followers,
-		followCount,
-		postCount,
-		description,
-		link,
-	} = user;
-
-	const title = `${name} (@${username}) • Instagram photos and videos`;
+	const title = `${user?.name} (@${user?.username}) • Instagram photos and videos`;
 
 	return (
 		<>
@@ -62,10 +47,10 @@ const UserPage = async ({ params }: UserPageProps) => {
 				<div className="mx-auto flex max-w-[935px]">
 					<div className="mr-[30px] flex flex-[1_0_0px] items-center justify-center">
 						<ProfileImage
-							src={profilePicture}
-							alt={`${username}'s profile picture`}
+							src={user?.profilePicture ?? ""}
+							alt={`${user?.username}'s profile picture`}
 							size={150}
-							story={story}
+							story={user?.story ?? false}
 							className="ig-ring-on-offwhite"
 							ringSize="lg"
 						/>
@@ -74,9 +59,9 @@ const UserPage = async ({ params }: UserPageProps) => {
 						<div className="flex items-center">
 							<div className="flex items-center">
 								<span className="max-w-[21ch] overflow-hidden text-ellipsis text-[28px] font-light leading-[32px]">
-									{username}
+									{user?.username ?? ""}
 								</span>
-								{verified && (
+								{user?.verified && (
 									<span
 										className="ml-2 block h-[18px] w-[18px] overflow-hidden whitespace-nowrap bg-[url(https://static.cdninstagram.com/rsrc.php/v3/y5/r/TJztmXpWTmS.png)] bg-no-repeat indent-[110%] align-baseline [background-position:0_-369px]"
 										title="Verified"
@@ -105,26 +90,26 @@ const UserPage = async ({ params }: UserPageProps) => {
 							</div>
 						</div>
 						<BaseStats
-							followers={followerCount}
-							follows={followCount}
-							posts={postCount}
+							followers={user?.followerCount ?? 0}
+							follows={user?.followCount ?? 0}
+							posts={user?.postCount ?? 0}
 						/>
 						<div>
-							<div className="font-semibold">{name}</div>
-							<p>{colorizeText(description)}</p>
+							<div className="font-semibold">{user?.name ?? ""}</div>
+							<p>{colorizeText(user?.description ?? "")}</p>
 						</div>
 						<div>
 							<Link
-								href={link}
+								href={user?.link ?? ""}
 								className="font-semibold text-link hover:underline"
 							>
-								{link.replace(/(https?:\/\/)/g, "")}
+								{user?.link.replace(/(https?:\/\/)/g, "") ?? ""}
 							</Link>
 						</div>
 						<div className="mt-[12px] text-[12px] font-medium leading-[16px] text-dark-me">
 							Followed by{" "}
-							{followers.slice(0, 3).map((follower, i) => {
-								if (i === followers.length - 1)
+							{user?.followers.slice(0, 3).map((follower, i) => {
+								if (i === user?.followers.length - 1)
 									return (
 										<>
 											{" "}
@@ -134,13 +119,13 @@ const UserPage = async ({ params }: UserPageProps) => {
 											</span>
 										</>
 									);
-								if (i === 2 && followers.length > 3)
+								if (i === 2 && user?.followers.length > 3)
 									return (
 										<>
 											<span className="text-dark-he">
 												{follower}
 											</span>{" "}
-											+ {followers.length - 3} more
+											+ {user?.followers.length - 3} more
 										</>
 									);
 								return (
