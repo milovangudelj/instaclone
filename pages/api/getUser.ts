@@ -2,12 +2,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { type UserType } from "../../types";
 
 import users from "../../data/users.json";
-import { Either } from "../../types/utility";
-import { CANONICAL_URL } from "../../utils/variables";
 
 const handler = (
 	req: NextApiRequest,
-	res: NextApiResponse<UserType | { error: string }>
+	res: NextApiResponse<{ user: UserType | null; error: string | null }>
 ) => {
 	const { id, username } = req.query;
 
@@ -15,20 +13,10 @@ const handler = (
 		(entry) => entry.id === id || entry.username === username
 	);
 
-	res.status(200).json(user ?? { error: "User not found." });
-};
-
-export const getUser = async ({
-	id,
-	username,
-}: Either<{ id: string }, { username: string }>) => {
-	const apiUrl =
-		CANONICAL_URL +
-		"/api/getUser" +
-		(id ? `?id=${id}` : `?username=${username}`);
-	const res = await fetch(apiUrl);
-
-	return res.json();
+	res.status(200).json({
+		user: user ? user : null,
+		error: user ? null : "User not found.",
+	});
 };
 
 export default handler;

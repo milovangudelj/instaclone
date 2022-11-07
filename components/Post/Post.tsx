@@ -9,7 +9,7 @@ import {
 	IGPaperPlaneTilt,
 	IGSmiley,
 } from "../../components/icons";
-import { getUser } from "../../pages/api/getUser";
+import { getUser } from "../../utils/getUserQuery";
 
 import { CommentType, UserType, type PostType } from "../../types";
 import asyncComponent from "../../utils/asyncComponent";
@@ -35,9 +35,13 @@ export const Post = asyncComponent(
 		when,
 		subtitle,
 	}: PostType) => {
-		const { profilePicture, username, story }: UserType = await getUser({
+		const { user, error } = await getUser({
 			id: author,
 		});
+		if (!user) return <p>Failed to fetch user data...</p>;
+
+		const { profilePicture, username, story } = user;
+
 		const { comments }: { comments: CommentType[] } = await getComments(
 			postId
 		);

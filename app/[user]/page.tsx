@@ -8,7 +8,7 @@ import {
 	IGFollowing,
 	IGHeartStraight,
 } from "../../components/icons";
-import { getUser } from "../../pages/api/getUser";
+import { getUser } from "../../utils/getUserQuery";
 import { UserType } from "../../types";
 import { abbreviateNumber } from "../../utils/abbreviateNum";
 import { colorizeText } from "../../utils/colorizeText";
@@ -33,7 +33,12 @@ export const generateStaticParams = async () => {
 type UserPageProps = { params: { [key: string]: string } };
 
 const UserPage = async ({ params }: UserPageProps) => {
-	const { user } = params;
+	const { user: userId } = params;
+	const { user, error } = await getUser({
+		username: userId,
+	});
+	if (!user) return <p>Failed to fetch user data...</p>;
+
 	const {
 		profilePicture,
 		username,
@@ -46,9 +51,7 @@ const UserPage = async ({ params }: UserPageProps) => {
 		postCount,
 		description,
 		link,
-	}: UserType = await getUser({
-		username: user,
-	});
+	} = user;
 
 	const title = `${name} (@${username}) • Instagram photos and videos`;
 

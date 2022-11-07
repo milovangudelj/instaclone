@@ -1,11 +1,14 @@
-import { getUser } from "../../pages/api/getUser";
+import { getUser } from "../../utils/getUserQuery";
 import { UserType } from "../../types";
 
 const UserHead = async ({ params }: { params: { [key: string]: string } }) => {
-	const { user } = params;
-	const { name, username }: UserType = await getUser({
-		username: user,
+	const { user: userId } = params;
+	const { user, error } = await getUser({
+		username: userId,
 	});
+	if (!user) return null;
+
+	const { name, username } = user;
 
 	const title = `${name} (@${username}) • Instagram photos and videos`;
 
