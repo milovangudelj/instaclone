@@ -115,7 +115,7 @@ const UserPage = async ({ params }: UserPageProps) => {
 								href={link}
 								className="font-semibold text-link hover:underline"
 							>
-								{link.replace(/(https?:\/\/)/g, "")}
+								{link ? link.replace(/(https?:\/\/)/g, "") : link}
 							</Link>
 						</div>
 						<div className="mt-[12px] text-[12px] font-medium leading-[16px] text-dark-me">
