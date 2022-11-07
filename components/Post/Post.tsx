@@ -38,9 +38,6 @@ export const Post = asyncComponent(
 		const { user, error } = await getUser({
 			id: author,
 		});
-		if (!user) return <p>Failed to fetch user data...</p>;
-
-		const { profilePicture, username, story } = user;
 
 		const { comments }: { comments: CommentType[] } = await getComments(
 			postId
@@ -51,19 +48,19 @@ export const Post = asyncComponent(
 				<div className="flex items-center border-b border-stroke">
 					<header className="flex flex-1 items-center py-2 pr-1 pl-3">
 						<ProfileImage
-							src={profilePicture}
-							alt={`${username}'s profile picture`}
+							src={user?.profilePicture}
+							alt={`${user?.username}'s profile picture`}
 							size={32}
-							story={story}
+							story={user?.story ?? false}
 							className="my-1 w-[32px]"
 							ringSize="sm"
 						/>
 						<div className="min-h-10 ml-2.5 flex flex-col text-dark-he">
 							<Link
-								href={`/${username}`}
+								href={`/${user?.username}`}
 								className="relative top-px p-0.5 text-sm font-semibold leading-[18px]"
 							>
-								{username}
+								{user?.username}
 							</Link>
 							<span className="relative bottom-px inline-block p-0.5 text-xs">
 								{subtitle}
@@ -118,7 +115,10 @@ export const Post = asyncComponent(
 						</div>
 					</div>
 					<PostLikes likes={likes} />
-					<PostDescription description={description} username={username} />
+					<PostDescription
+						description={description}
+						username={user?.username ?? ""}
+					/>
 					<PostComments commentCount={commentCount} comments={comments} />
 					<div className="mb-1 px-2 py-px">
 						<Link href="#" className="">
