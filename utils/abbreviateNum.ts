@@ -1,4 +1,6 @@
 export const abbreviateNumber = (value: number) => {
+	if (!value) return "0";
+	
 	let newValue: string = value.toString();
 	if (value >= 1000) {
 		const suffixes = ["", "K", "M", "B", "T"];
