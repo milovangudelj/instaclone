@@ -1,7 +1,7 @@
 export type StoryType = {
 	id: string;
-	username: string;
-	name: string;
-	image?: string;
-	seen: boolean;
+	author: string;
+	content: string;
+	when: string;
+	seenBy: string[];
 };

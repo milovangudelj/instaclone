@@ -15,7 +15,7 @@ import { CommentType, UserType, type PostType } from "../../types";
 import asyncComponent from "../../utils/asyncComponent";
 import { colorizeText } from "../../utils/colorizeText";
 import { CANONICAL_URL } from "../../utils/variables";
-import { ProfileImage } from "../ProfileImage";
+import { StoryCircle } from "../StoryCircle";
 
 const getComments = async (postId: string) => {
 	const res = await fetch(`${CANONICAL_URL}/api/getComments?postId=${postId}`);
@@ -36,7 +36,7 @@ export const Post = asyncComponent(
 		subtitle,
 	}: PostType) => {
 		const { user, error } = await getUser({
-			id: author,
+			username: author,
 		});
 
 		const { comments }: { comments: CommentType[] } = await getComments(
@@ -47,7 +47,7 @@ export const Post = asyncComponent(
 			<article className="mb-3 w-[472px] rounded-lg border border-stroke bg-white">
 				<div className="flex items-center border-b border-stroke">
 					<header className="flex flex-1 items-center py-2 pr-1 pl-3">
-						<ProfileImage
+						<StoryCircle
 							src={user?.profilePicture}
 							alt={`${user?.username}'s profile picture`}
 							size={32}

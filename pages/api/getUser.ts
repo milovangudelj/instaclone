@@ -7,11 +7,9 @@ const handler = (
 	req: NextApiRequest,
 	res: NextApiResponse<{ user: UserType | null; error: string | null }>
 ) => {
-	const { id, username } = req.query;
+	const { username } = req.query;
 
-	const user = users.find(
-		(entry) => entry.id === id || entry.username === username
-	);
+	const user = users.find((entry) => entry.username === username);
 
 	res.status(200).json({
 		user: user ? user : null,

@@ -1,5 +1,5 @@
 export interface UserType {
-	id: string;
+	id?: string;
 	username: string;
 	name: string;
 	verified: boolean;
@@ -8,7 +8,7 @@ export interface UserType {
 	followerCount: number;
 	followCount: number;
 	followers: string[];
-	highlights: { cover: string; title: string; stories: string[] }[];
+	highlights: string[];
 	postCount: number;
 	link: string;
 	story: boolean;

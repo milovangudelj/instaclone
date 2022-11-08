@@ -1,7 +1,7 @@
 import { getUser } from "../../utils/getUserQuery";
 import { asyncComponent, colorizeText } from "../../utils";
 import {
-	ProfileImage,
+	StoryCircle,
 	UserFollowedBy,
 	UserHeaderLink,
 	UserStats,
@@ -11,14 +11,13 @@ import {
 import { IGDotsThree, IGDownChevron, IGFollowing } from "../icons";
 
 export const UserHeader = asyncComponent(
-	async ({ username: usernameSlug }: { username: string }) => {
-		const { user } = await getUser({ username: usernameSlug });
+	async ({ username }: { username: string }) => {
+		const { user } = await getUser({ username });
 
 		if (!user) return <UserNotFound />;
 
 		const {
 			profilePicture,
-			username,
 			story,
 			verified,
 			followerCount,
@@ -31,9 +30,9 @@ export const UserHeader = asyncComponent(
 		} = user;
 
 		return (
-			<div className="mx-auto flex max-w-[935px]">
+			<div className="mx-auto mb-[44px] flex max-w-[935px]">
 				<div className="mr-[30px] flex flex-[1_0_0px] items-center justify-center">
-					<ProfileImage
+					<StoryCircle
 						src={profilePicture}
 						alt={`${username}'s profile picture`}
 						size={150}

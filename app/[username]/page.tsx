@@ -1,4 +1,9 @@
-import { TitleUpdater, UserNotFound, UserHeader } from "../../components";
+import {
+	TitleUpdater,
+	UserNotFound,
+	UserHeader,
+	UserHighlights,
+} from "../../components";
 import { getUser } from "../../utils/getUserQuery";
 import { UserType } from "../../types";
 import { CANONICAL_URL } from "../../utils/variables";
@@ -15,19 +20,19 @@ export const generateStaticParams = async () => {
 	const usernames = await getUsernames();
 
 	return usernames.map((username) => ({
-		usernameSlug: username,
+		username,
 	}));
 };
 
 const UserPage = async ({ params }: { params: { [key: string]: string } }) => {
-	const { usernameSlug } = params;
+	const { username } = params;
 	const { user, error } = await getUser({
-		username: usernameSlug,
+		username: username,
 	});
 
 	if (!user) return <UserNotFound />;
 
-	const { name, username } = user;
+	const { name } = user;
 
 	const title = `${name} (@${username}) • Instagram photos and videos`;
 
@@ -36,7 +41,8 @@ const UserPage = async ({ params }: { params: { [key: string]: string } }) => {
 			<TitleUpdater title={title} />
 			<main className="px-[20px] pt-[30px]">
 				<UserHeader username={username} />
-				<div>
+				<UserHighlights user={username} />
+				<div className="mt-8">
 					{[...Array(50)].map((item, i) => (
 						<div key={`lorem_0${i}`}>
 							<p>

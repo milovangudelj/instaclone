@@ -1,18 +1,21 @@
-import Image from "next/image";
 import Link from "next/link";
-import { StoryType } from "../../types";
-import { ProfileImage } from "../ProfileImage";
+import { StoryCircle } from "../StoryCircle";
 
 export const Story = ({
 	username,
 	name,
 	seen,
 	image,
-}: Omit<StoryType, "id">) => {
+}: {
+	username: string;
+	name: string;
+	image: string;
+	seen: boolean;
+}) => {
 	return (
 		<li className="flex items-center">
 			<div className="mr-2.5 p-1.5">
-				<ProfileImage
+				<StoryCircle
 					src={image}
 					alt={`${username}'s profile picture`}
 					size={65}

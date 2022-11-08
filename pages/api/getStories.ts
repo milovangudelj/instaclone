@@ -4,17 +4,23 @@ import { type StoryType } from "../../types";
 import users from "../../data/users.json";
 
 type Data = {
-	stories: StoryType[];
+	stories: {
+		id: string;
+		username: string;
+		name: string;
+		image: string;
+		seen: boolean;
+	}[];
 };
 
 const handler = (req: NextApiRequest, res: NextApiResponse<Data>) => {
-	const stories: StoryType[] = users
+	const stories = users
 		.filter(
 			({ username, posts }) =>
 				username !== "milovangudelj" && posts.length === 0
 		)
-		.map(({ id, username, name, profilePicture, story }) => ({
-			id: `st_${id}`,
+		.map(({ username, name, profilePicture, story }, i) => ({
+			id: `st_${i}`,
 			username,
 			name,
 			image: profilePicture,

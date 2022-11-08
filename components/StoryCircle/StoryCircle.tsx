@@ -16,7 +16,7 @@ const ringSizes = {
 	},
 };
 
-export const ProfileImage = ({
+export const StoryCircle = ({
 	alt,
 	className,
 	size,
@@ -24,6 +24,7 @@ export const ProfileImage = ({
 	story,
 	ringSize = "md",
 	on = "white",
+	withInnerShadow = true,
 }: {
 	src?: string;
 	size: number;
@@ -32,6 +33,7 @@ export const ProfileImage = ({
 	story: boolean;
 	ringSize?: "sm" | "md" | "lg";
 	on?: "white" | "offwhite";
+	withInnerShadow?: boolean;
 }) => {
 	const ringClasses =
 		(story
@@ -55,7 +57,9 @@ export const ProfileImage = ({
 						className="relative z-[1] rounded-full"
 					/>
 				)}
-				<div className="absolute inset-0 z-[2] rounded-full border border-black/10"></div>
+				{withInnerShadow && (
+					<div className="absolute inset-0 z-[2] rounded-full border border-black/10"></div>
+				)}
 				<div className={`absolute z-[0] rounded-full ${ringClasses}`}></div>
 			</div>
 		</div>
