@@ -27,7 +27,7 @@ const links: ToolbarLinkType[] = [
 	{
 		id: "li_02",
 		label: "Search",
-		href: "/search",
+		href: "/#search",
 		icons: {
 			active: <IGMagnifyingGlass weight="fill" size={24} />,
 			base: <IGMagnifyingGlass size={24} />,
@@ -36,7 +36,7 @@ const links: ToolbarLinkType[] = [
 	{
 		id: "li_03",
 		label: "Explore",
-		href: "/explore",
+		href: "/#explore",
 		icons: {
 			active: <IGCompass weight="fill" size={24} />,
 			base: <IGCompass size={24} />,
@@ -45,7 +45,7 @@ const links: ToolbarLinkType[] = [
 	{
 		id: "li_04",
 		label: "Messages",
-		href: "/messages",
+		href: "/#messages",
 		icons: {
 			active: <IGPaperPlaneTilt weight="fill" size={24} />,
 			base: <IGPaperPlaneTilt size={24} />,
@@ -54,7 +54,7 @@ const links: ToolbarLinkType[] = [
 	{
 		id: "li_05",
 		label: "Notifications",
-		href: "/notifications",
+		href: "/#notifications",
 		icons: {
 			active: <IGHeartStraight weight="fill" size={24} />,
 			base: <IGHeartStraight size={24} />,
@@ -63,7 +63,7 @@ const links: ToolbarLinkType[] = [
 	{
 		id: "li_06",
 		label: "Create",
-		href: "/create",
+		href: "/#create",
 		icons: {
 			active: <IGPlusSquare weight="fill" size={24} />,
 			base: <IGPlusSquare size={24} />,
@@ -72,7 +72,7 @@ const links: ToolbarLinkType[] = [
 	{
 		id: "li_07",
 		label: "Profile",
-		href: "/profile",
+		href: "/milovangudelj",
 		icons: {
 			active: (
 				<ProfileImage
