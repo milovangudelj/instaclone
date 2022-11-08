@@ -11,13 +11,13 @@
 	}
 
 	.ig-ring {
-		@apply border-double border-transparent bg-origin-border [background-clip:padding-box,border-box];
+		@apply border-double border-transparent bg-origin-border -rotate-45 origin-center [background-clip:padding-box,border-box];
 	}
 	.ig-ring.ig-ring-on-white {
-		@apply [background-image:linear-gradient(white,white),linear-gradient(to_top_right,#FFCB00,#FF2C44,#D300C5)];
+		@apply [background-image:linear-gradient(white,white),linear-gradient(to_right,#FFCB00,#FF2C44,#D300C5)];
 	}
 	.ig-ring.ig-ring-on-offwhite {
-		@apply [background-image:linear-gradient(#fafafa,#fafafa),linear-gradient(to_top_right,#FFCB00,#FF2C44,#D300C5)];
+		@apply [background-image:linear-gradient(#fafafa,#fafafa),linear-gradient(to_right,#FFCB00,#FF2C44,#D300C5)];
 	}
 
 	.border-debug {
