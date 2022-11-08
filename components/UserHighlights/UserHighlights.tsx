@@ -15,8 +15,6 @@ export const UserHighlights = asyncComponent(
 	async ({ user }: { user: string }) => {
 		const { highlights } = await getHighlights(user);
 
-		console.log(highlights);
-
 		return (
 			<div className="mb-[44px]">
 				<ul className="mx-auto flex max-w-[935px] space-x-[25px] px-[32px]">
