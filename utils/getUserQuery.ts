@@ -3,17 +3,14 @@ import { Either } from "../types/utility";
 import { CANONICAL_URL } from "./variables";
 
 export const getUser = async ({
-	id,
 	username,
-}: Either<{ id: string }, { username: string }>): Promise<{
+}: {
+	username: string;
+}): Promise<{
 	user: UserType | null;
 	error: string | null;
 }> => {
-	const apiUrl =
-		CANONICAL_URL +
-		"/api/getUser" +
-		(id ? `?id=${id}` : `?username=${username}`);
-	const res = await fetch(apiUrl);
+	const res = await fetch(`${CANONICAL_URL}/api/getUser?username=${username}`);
 
 	return res.json();
 };
