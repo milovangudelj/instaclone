@@ -83,7 +83,9 @@ export const UserHeader = asyncComponent(
 					/>
 					<div>
 						<h1 className="font-semibold">{name}</h1>
-						<p>{colorizeText(description)}</p>
+						<p className="whitespace-pre-line">
+							{colorizeText(description)}
+						</p>
 					</div>
 					<UserHeaderLink link={link} />
 					<UserFollowedBy followers={followers} />
