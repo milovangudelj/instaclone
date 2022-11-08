@@ -1,19 +1,13 @@
+import { getHighlights } from "../../queries";
 import { HighlightType } from "../../types";
 import { asyncComponent } from "../../utils";
-import { CANONICAL_URL } from "../../utils/variables";
 import { StoryCircle } from "../StoryCircle";
-
-const getHighlights = async (
-	user: string
-): Promise<{ highlights: HighlightType[] }> => {
-	const res = await fetch(`${CANONICAL_URL}/api/getHighlights?user=${user}`);
-
-	return res.json();
-};
 
 export const UserHighlights = asyncComponent(
 	async ({ user }: { user: string }) => {
-		const { highlights } = await getHighlights(user);
+		const { highlights, error } = await getHighlights(user);
+
+		if (!highlights) return <></>;
 
 		return (
 			<div className="mb-[44px]">
