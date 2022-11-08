@@ -4,8 +4,7 @@ import { type HighlightType } from "../../types";
 import highlights from "../../data/highlights.json";
 
 type Data = {
-	highlights: HighlightType[] | null;
-	error: string | null;
+	highlights: HighlightType[];
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -13,10 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 	const result = highlights.filter((highlight) => highlight.author === user);
 
-	res.status(200).json({
-		highlights: result.length > 0 ? result : null,
-		error: result.length > 0 ? null : "Highlights not found.",
-	});
+	res.status(200).json({ highlights: result });
 };
 
 export default handler;

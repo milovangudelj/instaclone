@@ -5,9 +5,7 @@ import { StoryCircle } from "../StoryCircle";
 
 export const UserHighlights = asyncComponent(
 	async ({ user }: { user: string }) => {
-		const { highlights, error } = await getHighlights(user);
-
-		if (!highlights) return <></>;
+		const { highlights } = await getHighlights(user);
 
 		return (
 			<div className="mb-[44px]">
