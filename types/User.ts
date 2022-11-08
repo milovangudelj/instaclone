@@ -1,4 +1,4 @@
-export type UserType = {
+export interface UserType {
 	id: string;
 	username: string;
 	name: string;
@@ -14,4 +14,4 @@ export type UserType = {
 	story: boolean;
 	posts: string[];
 	comments: string[];
-};
+}
