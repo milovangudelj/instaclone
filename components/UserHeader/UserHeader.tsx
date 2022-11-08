@@ -38,7 +38,7 @@ export const UserHeader = asyncComponent(
 						alt={`${username}'s profile picture`}
 						size={150}
 						story={story ?? false}
-						className="ig-ring-on-offwhite"
+						on="offwhite"
 						ringSize="lg"
 					/>
 				</div>

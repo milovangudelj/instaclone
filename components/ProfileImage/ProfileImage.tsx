@@ -23,6 +23,7 @@ export const ProfileImage = ({
 	src,
 	story,
 	ringSize = "md",
+	on = "white",
 }: {
 	src?: string;
 	size: number;
@@ -30,12 +31,16 @@ export const ProfileImage = ({
 	alt: string;
 	story: boolean;
 	ringSize?: "sm" | "md" | "lg";
+	on?: "white" | "offwhite";
 }) => {
 	const ringClasses =
 		(story
-			? "ig-ring ig-ring-on-white ring-rose-500 "
-			: "inset-0 ring-black/10 ") +
-		ringSizes[ringSize][story ? "unseen" : "seen"];
+			? `ig-ring ${
+					on === "white" ? "ig-ring-on-white" : "ig-ring-on-offwhite"
+			  } ring-rose-500 `
+			: `inset-0 ${
+					on === "white" ? "ring-offset-white" : "ring-offset-offwhite"
+			  } ring-black/10 `) + ringSizes[ringSize][story ? "unseen" : "seen"];
 
 	return (
 		<div className={twMerge(`aspect-square w-[150px]`, className)}>

@@ -17,8 +17,9 @@ export const Story = ({
 					alt={`${username}'s profile picture`}
 					size={65}
 					story={!seen}
-					className="ig-ring-on-offwhite w-[65px]"
+					className="w-[65px]"
 					ringSize="md"
+					on="offwhite"
 				/>
 			</div>
 			<div className="flex flex-col pt-1 text-sm leading-[18px]">
