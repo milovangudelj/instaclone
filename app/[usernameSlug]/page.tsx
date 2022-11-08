@@ -12,10 +12,10 @@ const getUsernames = async () => {
 };
 
 export const generateStaticParams = async () => {
-	const users = await getUsernames();
+	const usernames = await getUsernames();
 
-	return users.map((user) => ({
-		user,
+	return usernames.map((username) => ({
+		usernameSlug: username,
 	}));
 };
 
@@ -27,7 +27,7 @@ const UserPage = async ({ params }: { params: { [key: string]: string } }) => {
 
 	if (!user) return <UserNotFound />;
 
-	const { id, name, username } = user;
+	const { name, username } = user;
 
 	const title = `${name} (@${username}) • Instagram photos and videos`;
 
@@ -35,7 +35,7 @@ const UserPage = async ({ params }: { params: { [key: string]: string } }) => {
 		<>
 			<TitleUpdater title={title} />
 			<main className="px-[20px] pt-[30px]">
-				<UserHeader userId={id} />
+				<UserHeader username={username} />
 				<div>
 					{[...Array(50)].map((item, i) => (
 						<div key={`lorem_0${i}`}>

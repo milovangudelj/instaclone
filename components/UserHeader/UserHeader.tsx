@@ -11,8 +11,8 @@ import {
 import { IGDotsThree, IGDownChevron, IGFollowing } from "../icons";
 
 export const UserHeader = asyncComponent(
-	async ({ userId }: { userId: string }) => {
-		const { user } = await getUser({ id: userId });
+	async ({ username: usernameSlug }: { username: string }) => {
+		const { user } = await getUser({ username: usernameSlug });
 
 		if (!user) return <UserNotFound />;
 
