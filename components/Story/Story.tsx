@@ -23,7 +23,7 @@ export const Story = ({
 			</div>
 			<div className="flex flex-col pt-1 text-sm leading-[18px]">
 				<Link
-					href={`/user/${username}`}
+					href={`/${username}`}
 					className="max-w-[22ch] overflow-hidden text-ellipsis font-semibold text-dark-he"
 				>
 					{username}

@@ -57,7 +57,7 @@ export const Post = asyncComponent(
 						/>
 						<div className="min-h-10 ml-2.5 flex flex-col text-dark-he">
 							<Link
-								href={`/user/${user?.username}`}
+								href={`/${user?.username}`}
 								className="relative top-px p-0.5 text-sm font-semibold leading-[18px]"
 							>
 								{user?.username}
