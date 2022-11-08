@@ -1,4 +1,4 @@
-import { getUser } from "../../utils/getUserQuery";
+import { getUser } from "../../queries/getUser";
 import { asyncComponent, colorizeText } from "../../utils";
 import {
 	StoryCircle,

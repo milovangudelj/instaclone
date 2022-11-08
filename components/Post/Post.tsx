@@ -9,7 +9,7 @@ import {
 	IGPaperPlaneTilt,
 	IGSmiley,
 } from "../../components/icons";
-import { getUser } from "../../utils/getUserQuery";
+import { getUser } from "../../queries/getUser";
 
 import { CommentType, UserType, type PostType } from "../../types";
 import asyncComponent from "../../utils/asyncComponent";

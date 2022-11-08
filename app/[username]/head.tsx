@@ -1,4 +1,4 @@
-import { getUser } from "../../utils/getUserQuery";
+import { getUser } from "../../queries/getUser";
 import { UserType } from "../../types";
 
 const UserHead = async ({ params }: { params: { [key: string]: string } }) => {

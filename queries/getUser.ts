@@ -1,6 +1,6 @@
 import { UserType } from "../types";
 import { Either } from "../types/utility";
-import { CANONICAL_URL } from "./variables";
+import { CANONICAL_URL } from "../utils/variables";
 
 export const getUser = async ({
 	username,
