@@ -5,7 +5,7 @@ export const UserFollowedBy = ({
 }: {
 	followers: UserType["followers"];
 }) => {
-	return (
+	return followers.length > 0 ? (
 		<div className="mt-[12px] text-[12px] font-medium leading-[16px] text-dark-me">
 			Followed by{" "}
 			{followers.slice(0, 3).map((follower, i) => {
@@ -31,5 +31,5 @@ export const UserFollowedBy = ({
 				);
 			})}
 		</div>
-	);
+	) : null;
 };
