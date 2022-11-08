@@ -41,7 +41,7 @@ const UserPage = async ({ params }: { params: { [key: string]: string } }) => {
 			<TitleUpdater title={title} />
 			<main className="px-[20px] pt-[30px]">
 				<UserHeader username={username} />
-				{/* <UserHighlights user={username} /> */}
+				<UserHighlights user={username} />
 				<div className="mt-8">
 					{[...Array(50)].map((item, i) => (
 						<div key={`lorem_0${i}`}>
