@@ -164,5 +164,9 @@ module.exports = {
         },
       })
     }),
+    plugin(function ({ addVariant }) {
+      // Add a `cildren` variant, ie. `children:pb-0`
+      addVariant('children', '& > *')
+    }),
   ],
 }

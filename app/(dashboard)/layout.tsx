@@ -33,7 +33,9 @@ export default async function RootLayout({
               <main className="min-h-full h-full overflow-y-auto overflow-x-hidden">
                 <div className="grid-container relative gap-y-0 pb-0">
                   <div className="bleed-full bg-grid-light dark:bg-grid sticky top-0 h-[100dvh] inset-0"></div>
-                  {children}
+                  <div className="relative bleed-full grid grid-cols-[1fr_768px_1fr] children:[grid-column:2] -mt-[100dvh] py-20">
+                    {children}
+                  </div>
                 </div>
               </main>
             </div>

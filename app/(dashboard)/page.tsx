@@ -8,7 +8,7 @@ export default async function Page() {
   const posts = await supabase.from('posts').select('*')
 
   return (
-    <div className="relative -mt-[100dvh] py-20">
+    <>
       <h1 className="scroll-m-20 text-4xl mb-16 font-bold tracking-tight">
         For you
       </h1>
@@ -32,6 +32,6 @@ export default async function Page() {
               </li>
             ))}
       </ul>
-    </div>
+    </>
   )
 }
