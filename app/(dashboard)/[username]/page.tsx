@@ -1,5 +1,7 @@
 import { prisma } from '~lib/prisma'
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const users = await prisma.public_users.findMany({
     select: {
