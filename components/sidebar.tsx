@@ -6,9 +6,13 @@ import Link from 'next/link'
 import { SignOutButton } from '~components/ui/signout-button'
 import { House, ChatDots, CameraPlus, Gear } from '~components/icons'
 import { ThemeSwitch } from './ui/theme-switch'
+import { Database } from '~types/supabase'
 
 export const Sidebar = async () => {
-  const supabase = createServerComponentClient({ cookies })
+  const cookiesStore = cookies()
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookiesStore,
+  })
 
   const {
     data: { session },

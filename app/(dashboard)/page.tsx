@@ -3,7 +3,10 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '~types/supabase'
 
 export default async function Page() {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const cookiesStore = cookies()
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookiesStore,
+  })
 
   const posts = await supabase.from('posts').select('*')
 

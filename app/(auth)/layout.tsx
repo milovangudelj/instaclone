@@ -5,13 +5,17 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import 'styles/globals.css'
 
 import { ThemeProvider } from '~components/theme-provider'
+import { Database } from '~types/supabase'
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const supabase = createServerComponentClient({ cookies })
+  const cookiesStore = cookies()
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookiesStore,
+  })
 
   const {
     data: { session },
