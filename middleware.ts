@@ -6,5 +6,7 @@ export default async function middleware(req: NextRequest) {
   const supabase = createMiddlewareClient({ req, res })
   await supabase.auth.getSession()
 
+  res.headers.set('x-instaclone-pathname', req.nextUrl.pathname)
+
   return res
 }

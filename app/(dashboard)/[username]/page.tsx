@@ -1,6 +1,5 @@
+import { notFound } from 'next/navigation'
 import { prisma } from '~lib/prisma'
-
-export const dynamicParams = false
 
 export async function generateStaticParams() {
   const users = await prisma.public_users.findMany({
@@ -14,10 +13,20 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function Page({
+export default async function UserPage({
   params: { username },
 }: {
   params: { username: string }
 }) {
+  const user = await prisma.public_users.findUnique({
+    where: {
+      username,
+    },
+  })
+
+  if (!user) {
+    notFound()
+  }
+
   return <div>User: {decodeURIComponent(username)}</div>
 }
